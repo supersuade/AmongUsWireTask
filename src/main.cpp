@@ -30,7 +30,7 @@ RGB PURPLE = {255,0,200};
 
 int wires[4] = {2,3,4,5};
 int ports[4] = {6,7,8,9};
-RGB colors[6] = {RED,YELLOW,GREEN,BLUE,PURPLE};
+RGB colors[6] = {RED,YELLOW,GREEN,BLUE,PURPLE}; //these colors show up well in daylight on my cheap led pixel lights
 int color_i[6] = {0,1,2,3,4};
 match matches[4];
 
@@ -39,6 +39,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(8, 12, NEO_GRB + NEO_KHZ800);
 
 // Input a value 0 to 255 to get a color value.
 // The colours are a transition r - g - b - back to r.
+// used for the winning animation, I think
 uint32_t Wheel(byte WheelPos) {
   WheelPos = 255 - WheelPos;
   if(WheelPos < 85) {
@@ -93,6 +94,8 @@ int portToLED(int val){
   return 7-(val-6);
 }
 
+// a scrambling algorithm i found somewhere
+// here: https://forum.arduino.cc/t/solved-shuffle-an-array/43536
 void bubbleUnsort(int *list, int elem)
 {
   for (int a=elem-1; a>0; a--)
